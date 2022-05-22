@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using UCondo.Infrastructure.Persistence;
 
 namespace UCondo.API
 {
@@ -31,8 +33,15 @@ namespace UCondo.API
         {
             services.AddSingleton<IUnidadeRepository, UnidadeRepository>();
             services.AddScoped<IUnidadeService, UnidadeService>();
+            
+            services.AddSingleton<IContaRepository, ContaRepository>();
+            services.AddScoped<IContaService, ContaService>();
 
             services.AddControllers();
+
+            #region Connection String
+            services.AddDbContext<UCondoDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("CondoConn")));
+            #endregion
 
             services.AddSwaggerGen(c =>
             {
