@@ -12,6 +12,7 @@ namespace UCondo.Core.Entidades
     public class Conta
     {
        // [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         public string FileName { get; set; }
         public int ParentID { get; set; }
