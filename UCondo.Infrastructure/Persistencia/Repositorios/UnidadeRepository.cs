@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UCondo.Infrastructure.Persistence;
 
 namespace UCondo.Infrastructure.Persistencia.Repositorios
 {
     public class UnidadeRepository : IUnidadeRepository
     {
+      
         private readonly List<Unidade> _unidades;
         private int _idAtual = 1;
         public UnidadeRepository()

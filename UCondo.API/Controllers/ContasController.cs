@@ -23,7 +23,7 @@ namespace UCondo.API.Controllers
             _iContaService = iContaService;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetAll")]
         [AllowAnonymous]
         public ActionResult GetContas()
@@ -48,18 +48,11 @@ namespace UCondo.API.Controllers
         [AllowAnonymous]
         public ActionResult GetContasByID(string ID)
         {
-            List<ContaModel> list = new List<ContaModel>();
+            ContaModel dado = new ContaModel();
 
-            list = _iContaService.GetAll().OrderBy(a => a.FileName).ToList();
+            dado = _iContaService.GetByID(ID);
 
-
-            List<ContaModel> treelist = new List<ContaModel>();
-            if (list.Count > 0)
-            {
-                treelist = _iContaService.BuildTree(list);
-            }
-
-            return Ok(new { Data = treelist });
+            return Ok(new { Data = dado });
         }
 
 

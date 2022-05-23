@@ -12,8 +12,8 @@ namespace UCondo.Application.Services
 
         public List<ContaModel> GetAll();
         public List<ContaModel> BuildTree(List<ContaModel> list);
-
-
+        public ContaModel GetByID(string ID);
+        public List<ContaModel> GetChildren(List<ContaModel> list, string ID);
 
 
     }

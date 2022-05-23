@@ -31,10 +31,10 @@ namespace UCondo.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IUnidadeRepository, UnidadeRepository>();
+            services.AddScoped<IUnidadeRepository, UnidadeRepository>();
             services.AddScoped<IUnidadeService, UnidadeService>();
             
-            services.AddSingleton<IContaRepository, ContaRepository>();
+            services.AddScoped<IContaRepository, ContaRepository>();
             services.AddScoped<IContaService, ContaService>();
 
             services.AddControllers();

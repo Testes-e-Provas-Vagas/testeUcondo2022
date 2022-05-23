@@ -11,6 +11,11 @@ namespace UCondo.Core.Interfaces.Repositorios
     {
         public List<Conta> GetAll();
 
+        public Conta GetByID(string ID);
+
+        public List<Conta> UsandoContext();
+
+
 
     }
 }

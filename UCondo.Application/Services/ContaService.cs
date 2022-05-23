@@ -61,5 +61,31 @@ namespace UCondo.Application.Services
             }
         }
 
+        public ContaModel GetByID(string ID)
+        {
+            var curr = _iContaRepository.GetByID(ID);
+            var childrens = _iContaRepository.GetAll().Where(x => x.ParentID == int.Parse(ID)).ToList();
+
+            var childrensModel = (from itn in childrens
+                                  select new ContaModel
+                                  { ID = itn.ID, ParentID = itn.ParentID, CodConta = itn.CodConta, FileName = itn.FileName })
+                                  .ToList();
+
+
+            var contaModel = new ContaModel
+            {
+                ID = curr.ID,
+                FileName = curr.FileName,
+                CodConta = curr.CodConta,
+                ParentID = curr.ParentID,
+                Childrens = childrensModel
+            };
+            return contaModel;
+        }
+
+        public List<ContaModel> GetChildren(List<ContaModel> list, string ID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
