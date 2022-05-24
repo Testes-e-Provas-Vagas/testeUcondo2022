@@ -56,5 +56,55 @@ namespace UCondo.API.Controllers
         }
 
 
+
+        [HttpPost]
+        [Route("CreateConta")]
+        [AllowAnonymous]
+        public ActionResult CreateConta(ContaModel conta)
+        {
+            ContaModel dado = new ContaModel();
+
+            dado = _iContaService.CreateConta(conta);
+
+            return Ok(new { Data = dado, message = "registro incluido com sucesso" });
+        }
+
+
+
+        [HttpPost]
+        [Route("UpdateConta")]
+        [AllowAnonymous]
+        public ActionResult UpdateConta([FromBody]ContaModel conta, [FromQuery] string id)
+        {
+            ContaModel dado = new ContaModel();
+
+            dado = _iContaService.UpdateConta(conta, id);
+
+            return Ok(new { Data = dado, message = "registro atualizado com sucesso" });
+        }
+
+
+        [HttpGet]
+        [Route("DeleteConta")]
+        [AllowAnonymous]
+        public ActionResult DeleteConta(string id)
+        {
+           bool dado = _iContaService.DeleteConta(id);
+
+            return Ok(new { success = dado, message= "registro excluido com sucesso" });
+        }
+
+
+
+        [HttpGet]
+        [Route("ObterCodContaNova")]
+        [AllowAnonymous]
+        public ActionResult ObterCodContaNova(string parentID = "", string filhoID= "")
+        {
+            string dado = _iContaService.ObterCodContaNova(parentID, filhoID);
+
+            return Ok(new { success = dado });
+        }
+
     }
 }

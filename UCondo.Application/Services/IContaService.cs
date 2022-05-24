@@ -14,7 +14,9 @@ namespace UCondo.Application.Services
         public List<ContaModel> BuildTree(List<ContaModel> list);
         public ContaModel GetByID(string ID);
         public List<ContaModel> GetChildren(List<ContaModel> list, string ID);
-
-
+        ContaModel CreateConta(ContaModel conta);
+        ContaModel UpdateConta(ContaModel conta, string id);
+        public bool DeleteConta(string id);
+        string ObterCodContaNova(string parentID, string filhoID);
     }
 }

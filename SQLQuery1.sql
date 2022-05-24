@@ -41,3 +41,4 @@ GO
 INSERT [dbo].[TblConta] ([ID], [FileName], [ParentID]) VALUES (2004, N'Semester Master', 1)
 GO
 
+SELECT max(ID) FROM dbo.Treeviewtbl where ParentID='1'

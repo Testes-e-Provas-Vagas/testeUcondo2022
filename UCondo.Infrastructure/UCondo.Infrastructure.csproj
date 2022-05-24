@@ -23,4 +23,8 @@
     <ProjectReference Include="..\UCondo.Core\UCondo.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UCondo.Application.InputModels;
+using UCondo.Core.DTOs;
 using UCondo.Core.Interfaces.Repositorios;
 
 namespace UCondo.Application.Services
@@ -86,6 +87,51 @@ namespace UCondo.Application.Services
         public List<ContaModel> GetChildren(List<ContaModel> list, string ID)
         {
             throw new NotImplementedException();
+        }
+
+        public ContaModel CreateConta(ContaModel conta)
+        {
+            var dto = new ContaDTO { ID = conta.ID, CodConta = conta.CodConta, FileName = conta.FileName, ParentID = conta.ParentID, TipoConta = conta.TipoConta };
+            var ret = _iContaRepository.CreateConta(dto);
+            var model = new ContaModel { CodConta = ret.CodConta, FileName = ret.FileName, ID = ret.ID, ParentID = ret.ParentID, TipoConta = ret.TipoConta };
+            return model;
+        }
+
+        public ContaModel UpdateConta(ContaModel conta, string id)
+        {
+            var dto = new ContaDTO { ID = conta.ID, CodConta = conta.CodConta, FileName = conta.FileName, ParentID = conta.ParentID, TipoConta = conta.TipoConta };
+            var ret = _iContaRepository.UpdateConta(dto, id);
+            var model = new ContaModel { CodConta = ret.CodConta, FileName = ret.FileName, ID = ret.ID, ParentID = ret.ParentID, TipoConta = ret.TipoConta };
+            return model;
+        }
+
+        public bool DeleteConta(string id)
+        {
+            try
+            {
+                var ret = _iContaRepository.DeleteConta(id);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+           
+        }
+
+        public string ObterCodContaNova(string parentID, string filhoID)
+        {
+            try
+            {
+                var ret = _iContaRepository.ObterCodContaNova(parentID, filhoID);
+                return ret;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
     }
 }
